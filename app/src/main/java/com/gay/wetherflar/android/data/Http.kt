@@ -37,4 +37,21 @@ object Http {
             body
         }
     }
+
+    suspend fun download(url: String, dest: java.io.File) = withContext(Dispatchers.IO) {
+        val req = Request.Builder()
+            .url(url)
+            .header("User-Agent", UA)
+            .header("Accept", "*/*")
+            .build()
+        client.newCall(req).execute().use { resp ->
+            if (!resp.isSuccessful) {
+                throw IOException("HTTP ${resp.code} for ${url.take(80)}")
+            }
+            val body = resp.body ?: throw IOException("empty body for ${url.take(80)}")
+            body.byteStream().use { input ->
+                dest.outputStream().use { output -> input.copyTo(output) }
+            }
+        }
+    }
 }

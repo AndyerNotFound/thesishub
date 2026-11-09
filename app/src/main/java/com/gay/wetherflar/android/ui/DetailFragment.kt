@@ -177,7 +177,7 @@ class DetailFragment : Fragment() {
         
         val pdfUrl = paper.pdfUrl
         if (!pdfUrl.isNullOrBlank()) {
-            content.addView(actionButton(ctx, "打开 / 下载 PDF", primary = false, topMargin = ctx.dp(8f)) {
+            content.addView(actionButton(ctx, "阅读 / 下载 PDF", primary = false, topMargin = ctx.dp(8f)) {
                 showPdfDialog(pdfUrl)
             })
         }
@@ -250,11 +250,11 @@ class DetailFragment : Fragment() {
 
     private fun showPdfDialog(pdfUrl: String) {
         val ctx = requireContext()
-        val items = arrayOf("打开 PDF", "下载 PDF")
+        val items = arrayOf("在 APP 内阅读", "下载 PDF")
         MaterialAlertDialogBuilder(ctx)
             .setTitle("PDF")
             .setItems(items) { _, which ->
-                if (which == 0) openUrl(pdfUrl) else downloadPdf(pdfUrl)
+                if (which == 0) PdfViewerActivity.start(ctx, pdfUrl, paper.title) else downloadPdf(pdfUrl)
             }
             .setNegativeButton("取消", null)
             .show()
