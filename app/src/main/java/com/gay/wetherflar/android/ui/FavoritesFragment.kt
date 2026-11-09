@@ -33,6 +33,8 @@ class FavoritesFragment : Fragment() {
                 onOpen = { p -> (activity as? MainActivity)?.openDetail(p) },
                 onLongClick = { p -> confirmRemove(p) }
             )
+            clipToPadding = false
+            setPadding(0, 0, 0, ctx.dp(12f))
         }
         adapter = list.adapter as ResultAdapter
 
@@ -45,7 +47,7 @@ class FavoritesFragment : Fragment() {
         val root = vbox(ctx)
         root.layoutParams = LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        root.setPadding(ctx.dp(8f), ctx.dp(4f), ctx.dp(8f), 0)
+        root.setPadding(ctx.dp(12f), ctx.dp(4f), ctx.dp(12f), 0)
         root.addView(status)
         root.addView(list, LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f))

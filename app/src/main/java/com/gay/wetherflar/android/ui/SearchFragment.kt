@@ -107,6 +107,8 @@ class SearchFragment : Fragment() {
         list = RecyclerView(ctx).apply {
             layoutManager = LinearLayoutManager(ctx)
             adapter = ResultAdapter(onOpen = { p -> (activity as? MainActivity)?.openDetail(p) })
+            clipToPadding = false
+            setPadding(0, 0, 0, ctx.dp(12f))
         }
         adapter = list.adapter as ResultAdapter
 

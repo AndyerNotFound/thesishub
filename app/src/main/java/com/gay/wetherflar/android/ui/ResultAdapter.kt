@@ -50,7 +50,7 @@ class ResultAdapter(
 
         val lp = LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        lp.setMargins(ctx.dp(12f), ctx.dp(6f), ctx.dp(12f), ctx.dp(6f))
+        lp.setMargins(0, ctx.dp(6f), 0, ctx.dp(6f))
         body.layoutParams = lp
 
         val holder = VH(body)
